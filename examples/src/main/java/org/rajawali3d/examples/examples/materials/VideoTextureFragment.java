@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import org.rajawali3d.Object3D;
 import org.rajawali3d.animation.Animation;
@@ -108,8 +108,8 @@ public class VideoTextureFragment extends AExampleFragment {
 		}
 
         @Override
-        protected void onRender(long ellapsedRealtime, double deltaTime) {
-            super.onRender(ellapsedRealtime, deltaTime);
+        protected void onRender(long elapsedRealtime, double deltaTime) {
+            super.onRender(elapsedRealtime, deltaTime);
 			mVideoTexture.update();
 		}
 

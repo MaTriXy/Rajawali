@@ -2,7 +2,7 @@ package org.rajawali3d.examples.examples.general;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.animation.Animation;
 import org.rajawali3d.animation.RotateOnAxisAnimation;
 import org.rajawali3d.animation.TranslateAnimation3D;
@@ -31,7 +31,7 @@ public class ColoredLinesFragment extends AExampleFragment {
 			getCurrentCamera().setPosition(0, 0, 10);
 			getCurrentCamera().setLookAt(0, 0, 0);
 
-			Stack<Vector3> points = new Stack<Vector3>();
+			Stack<Vector3> points = new Stack<>();
 			int[] colors = new int[2000];
 			int colorCount = 0;
 			for (int i = -1000; i < 1000; i++) {

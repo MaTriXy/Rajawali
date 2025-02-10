@@ -3,7 +3,7 @@ package org.rajawali3d.examples.examples.general;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.examples.examples.AExampleFragment;
 import org.rajawali3d.materials.Material;
 import org.rajawali3d.materials.textures.ATexture;
@@ -76,8 +76,8 @@ public class ThreeSixtyImagesFragment extends AExampleFragment {
 		}
 
         @Override
-        protected void onRender(long ellapsedRealtime, double deltaTime) {
-            super.onRender(ellapsedRealtime, deltaTime);
+        protected void onRender(long elapsedRealtime, double deltaTime) {
+            super.onRender(elapsedRealtime, deltaTime);
 			// -- get the texture info list and remove the previous TextureInfo object
 			mMaterial.getTextureList().remove(
 					mTextures[mFrameCount++ % NUM_TEXTURES]);

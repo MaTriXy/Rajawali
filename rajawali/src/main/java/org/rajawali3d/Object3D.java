@@ -14,7 +14,7 @@ package org.rajawali3d;
 
 import android.graphics.Color;
 import android.opengl.GLES20;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import org.rajawali3d.bounds.BoundingBox;
 import org.rajawali3d.bounds.IBoundingVolume;
 import org.rajawali3d.cameras.Camera;
@@ -62,6 +62,7 @@ public class Object3D extends ATransformable3D implements Comparable<Object3D>, 
     protected Material mMaterial;
 
     protected Geometry3D     mGeometry;
+    protected FloatBuffer    mOriginalTextureCoords;
     protected Object3D       mParent;
     protected List<Object3D> mChildren;
     protected String         mName;
@@ -732,8 +733,10 @@ public class Object3D extends ATransformable3D implements Comparable<Object3D>, 
 
     public Object3D getChildByName(String name) {
         for (int i = 0, j = mChildren.size(); i < j; i++) {
-            if (mChildren.get(i).getName().equals(name)) {
-                return mChildren.get(i);
+            Object3D child = mChildren.get(i);
+            if (child.getName() == null) continue;
+            if (child.getName().equals(name)) {
+                return child;
             }
         }
 
@@ -937,14 +940,21 @@ public class Object3D extends ATransformable3D implements Comparable<Object3D>, 
      * Maps the (x,y) coordinates of <code>tileName</code> in <code>atlas</code>
      * to the TextureCoordinates of this BaseObject3D
      *
+     * Saves a copy of the original TextureCoordinates in case of future mapping.
+     *
      * @param tileName
      * @param atlas
      */
     public void setAtlasTile(String tileName, TextureAtlas atlas) {
         Tile tile = atlas.getTileNamed(tileName);
-        FloatBuffer fb = this.getGeometry().getTextureCoords();
+
+        if(mOriginalTextureCoords == null) {
+            mOriginalTextureCoords = this.getGeometry().getTextureCoords().duplicate();
+        }
+
+        FloatBuffer fb = FloatBuffer.allocate(mOriginalTextureCoords.capacity());
         for (int i = 0; i < fb.capacity(); i++) {
-            double uvIn = fb.get(i);
+            double uvIn = mOriginalTextureCoords.get(i);
             double uvOut;
             if (i % 2 == 0) {
                 uvOut = (uvIn * (tile.width / atlas.getWidth())) + tile.x / atlas.getWidth();

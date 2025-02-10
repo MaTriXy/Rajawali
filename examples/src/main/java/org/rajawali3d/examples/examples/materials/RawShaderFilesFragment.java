@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.examples.materials;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.Object3D;
 import org.rajawali3d.examples.R;
 import org.rajawali3d.examples.examples.AExampleFragment;
@@ -56,8 +56,8 @@ public class RawShaderFilesFragment extends AExampleFragment {
 		}
 
         @Override
-        protected void onRender(long ellapsedRealtime, double deltaTime) {
-            super.onRender(ellapsedRealtime, deltaTime);
+        protected void onRender(long elapsedRealtime, double deltaTime) {
+            super.onRender(elapsedRealtime, deltaTime);
 			mTime += .007f;
 			mMaterial.setTime(mTime);
 		}

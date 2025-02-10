@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.examples.optimizations;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import org.rajawali3d.Object3D;
 import org.rajawali3d.animation.Animation;
@@ -90,8 +90,8 @@ public class Optimized2000PlanesFragment extends AExampleFragment {
 		}
 
         @Override
-        protected void onRender(long ellapsedRealtime, double deltaTime) {
-            super.onRender(ellapsedRealtime, deltaTime);
+        protected void onRender(long elapsedRealtime, double deltaTime) {
+            super.onRender(elapsedRealtime, deltaTime);
 			mMaterial.setTime((System.currentTimeMillis() - mStartTime) / 1000f);
 			mMaterialPlugin.setCameraPosition(getCurrentCamera().getPosition());
 		}

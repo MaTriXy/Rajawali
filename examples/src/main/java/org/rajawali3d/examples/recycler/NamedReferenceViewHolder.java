@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.recycler;
 
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -21,7 +21,7 @@ final class NamedReferenceViewHolder<K extends INamed,
 
     public NamedReferenceViewHolder(View itemView) {
         super(itemView);
-        textViewName = (TextView) itemView.findViewById(android.R.id.text1);
+        textViewName = itemView.findViewById(android.R.id.text1);
         textViewName.setOnClickListener(this);
     }
 

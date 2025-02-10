@@ -15,9 +15,9 @@ package org.rajawali3d.postprocessing;
 import android.graphics.Bitmap.Config;
 import android.opengl.GLES20;
 
-import android.support.annotation.FloatRange;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
+import androidx.annotation.FloatRange;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
 import org.rajawali3d.materials.textures.ATexture;
 import org.rajawali3d.materials.textures.ATexture.FilterType;
 import org.rajawali3d.materials.textures.ATexture.WrapType;
@@ -69,9 +69,11 @@ public class PostProcessingManager {
     public PostProcessingManager(@NonNull Renderer renderer,
                                  @IntRange(from = -1) int width,
                                  @IntRange(from = -1) int height) {
+        boolean fullscreen = false;
         mRenderer = renderer;
 
         if (width == -1 && height == -1) {
+            fullscreen = true;
             width = mRenderer.getViewportWidth();
             height = mRenderer.getViewportHeight();
         }
@@ -85,9 +87,11 @@ public class PostProcessingManager {
         mRenderTarget1 = new RenderTarget("rt1" + hashCode(), width, height, 0, 0,
                                           false, false, GLES20.GL_TEXTURE_2D, Config.ARGB_8888,
                                           FilterType.LINEAR, WrapType.CLAMP);
+        mRenderTarget1.setFullscreen(fullscreen);
         mRenderTarget2 = new RenderTarget("rt2" + hashCode(), width, height, 0, 0,
                                           false, false, GLES20.GL_TEXTURE_2D, Config.ARGB_8888,
                                           FilterType.LINEAR, WrapType.CLAMP);
+        mRenderTarget2.setFullscreen(fullscreen);
 
         mWriteBuffer = mRenderTarget1;
         mReadBuffer = mRenderTarget2;
@@ -165,7 +169,7 @@ public class PostProcessingManager {
         // This method is currently intentionally empty.
     }
 
-    public void render(@IntRange(from = 0) long ellapsedTime, @FloatRange(from = 0d) double deltaTime) {
+    public void render(@IntRange(from = 0) long elapsedTime, @FloatRange(from = 0d) double deltaTime) {
         if (mComponentsDirty) {
             updatePassesList();
             mComponentsDirty = false;
@@ -193,14 +197,14 @@ public class PostProcessingManager {
             }
             final boolean depthOrRenderPass = type == PassType.RENDER || type == PassType.DEPTH;
             final Scene renderScene = depthOrRenderPass ? mRenderer.getCurrentScene() : mScene;
-            pass.render(renderScene, mRenderer, mScreenQuad, mWriteBuffer, mReadBuffer, ellapsedTime, deltaTime);
+            pass.render(renderScene, mRenderer, mScreenQuad, mWriteBuffer, mReadBuffer, elapsedTime, deltaTime);
 
             if (pass.needsSwap() && i < mNumPasses - 1) {
                 if (maskActive) {
                     GLES20.glStencilFunc(GLES20.GL_NOTEQUAL, 1, 0xffffffff);
 
                     mCopyPass
-                            .render(mScene, mRenderer, mScreenQuad, mWriteBuffer, mReadBuffer, ellapsedTime, deltaTime);
+                            .render(mScene, mRenderer, mScreenQuad, mWriteBuffer, mReadBuffer, elapsedTime, deltaTime);
 
                     GLES20.glStencilFunc(GLES20.GL_EQUAL, 1, 0xffffffff);
                 }

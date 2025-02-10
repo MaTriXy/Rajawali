@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.examples.animation;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.animation.LinearInterpolator;
 import org.rajawali3d.animation.Animation;
 import org.rajawali3d.animation.CoalesceAnimation3D;
@@ -22,7 +22,7 @@ public class CoalesceAnimationFragment extends AExampleFragment {
 
 	public class CoalesceAnimationRenderer extends AExampleRenderer {
 
-		public CoalesceAnimationRenderer(Context context, @Nullable AExampleFragment fragment) {
+		CoalesceAnimationRenderer(Context context, @Nullable AExampleFragment fragment) {
 			super(context, fragment);
 		}
 

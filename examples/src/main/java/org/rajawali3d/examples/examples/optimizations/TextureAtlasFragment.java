@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.examples.optimizations;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.examples.examples.AExampleFragment;
 import org.rajawali3d.materials.Material;
 import org.rajawali3d.materials.textures.ATexture;
@@ -100,8 +100,8 @@ public class TextureAtlasFragment extends AExampleFragment {
 		}
 
         @Override
-        protected void onRender(long ellapsedRealtime, double deltaTime) {
-            super.onRender(ellapsedRealtime, deltaTime);
+        protected void onRender(long elapsedRealtime, double deltaTime) {
+            super.onRender(elapsedRealtime, deltaTime);
 			mTileCube.setRotY(mTileCube.getRotY()+1);
 			mTileSphere.setRotY(mTileSphere.getRotY()+1);
 		}

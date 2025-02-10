@@ -2,8 +2,8 @@ package org.rajawali3d.examples.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 import java.util.Locale;
 
@@ -21,20 +21,17 @@ public class Example implements INamed, Parcelable {
         }
     };
 
-    private static final String BASE_URL
-            = "https://github.com/Rajawali/Rajawali/tree/master/examples/src/main/java";
+    private static final String BASE_URL = "https://github.com/Rajawali/Rajawali/tree/master/examples/src/main/java";
     @StringRes
     private final int name;
     private final String url;
     private final Class aClass;
 
-    public Example(@StringRes int name,
-            @NonNull Class<?> aClass) {
+    public Example(@StringRes int name, @NonNull Class<?> aClass) {
 
         this.name = name;
         this.aClass = aClass;
-        this.url = aClass.getName()
-                .replaceAll("\\.", "/");
+        this.url = aClass.getName().replaceAll("\\.", "/");
     }
 
     protected Example(Parcel in) {

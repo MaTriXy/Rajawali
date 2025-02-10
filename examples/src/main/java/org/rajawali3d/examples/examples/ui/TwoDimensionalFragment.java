@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.examples.ui;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.examples.examples.AExampleFragment;
 import org.rajawali3d.examples.examples.materials.materials.CustomMaterialPlugin;
 import org.rajawali3d.materials.Material;
@@ -35,8 +35,8 @@ public class TwoDimensionalFragment extends AExampleFragment {
 		}
 
         @Override
-        protected void onRender(long ellapsedRealtime, double deltaTime) {
-            super.onRender(ellapsedRealtime, deltaTime);
+        protected void onRender(long elapsedRealtime, double deltaTime) {
+            super.onRender(elapsedRealtime, deltaTime);
 			mTime += .007f;
 			mCustomMaterial.setTime(mTime);
 		}

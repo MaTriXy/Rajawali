@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.examples.effects;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.examples.examples.AExampleFragment;
 import org.rajawali3d.examples.examples.effects.particles.ExampleParticleSystem;
 
@@ -40,8 +40,8 @@ public class ParticlesFragment extends AExampleFragment {
 		}
 
         @Override
-        protected void onRender(long ellapsedRealtime, double deltaTime) {
-            super.onRender(ellapsedRealtime, deltaTime);
+        protected void onRender(long elapsedRealtime, double deltaTime) {
+            super.onRender(elapsedRealtime, deltaTime);
 			/*
 			mParticleSystem.setTime((float) mFrameCount * .2f);
 

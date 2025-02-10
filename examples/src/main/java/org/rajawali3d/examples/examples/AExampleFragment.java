@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.CallSuper;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.CallSuper;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,7 +35,7 @@ public abstract class AExampleFragment extends Fragment implements IDisplay, OnC
 
     protected ProgressBar mProgressBarLoader;
     protected GitHubLogoView mImageViewExampleLink;
-    protected String mExampleUrl;
+    private String mExampleUrl;
     protected FrameLayout mLayout;
     protected ISurface mRenderSurface;
     protected ISurfaceRenderer mRenderer;
@@ -52,7 +54,7 @@ public abstract class AExampleFragment extends Fragment implements IDisplay, OnC
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
         // Inflate the view
@@ -61,14 +63,14 @@ public abstract class AExampleFragment extends Fragment implements IDisplay, OnC
         mLayout.findViewById(R.id.relative_layout_loader_container).bringToFront();
 
         // Find the TextureView
-        mRenderSurface = (ISurface) mLayout.findViewById(R.id.rajwali_surface);
+        mRenderSurface = mLayout.findViewById(R.id.rajwali_surface);
 
         // Create the loader
-        mProgressBarLoader = (ProgressBar) mLayout.findViewById(R.id.progress_bar_loader);
+        mProgressBarLoader = mLayout.findViewById(R.id.progress_bar_loader);
         mProgressBarLoader.setVisibility(View.GONE);
 
         // Set the example link
-        mImageViewExampleLink = (GitHubLogoView) mLayout.findViewById(R.id.image_view_example_link);
+        mImageViewExampleLink = mLayout.findViewById(R.id.image_view_example_link);
         mImageViewExampleLink.setOnClickListener(this);
 
         // Create the renderer
@@ -88,22 +90,15 @@ public abstract class AExampleFragment extends Fragment implements IDisplay, OnC
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.image_view_example_link:
-                if (mImageViewExampleLink == null)
-                    throw new IllegalStateException("Example link is null!");
+        if (v.getId() == R.id.image_view_example_link) {
+            if (mImageViewExampleLink == null)
+                throw new IllegalStateException("Example link is null!");
 
-                try {
-                    final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mExampleUrl));
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    ExceptionDialog dialog = ExceptionDialog.newInstance(
-                            getString(R.string.exception_dialog_title),
-                            getString(R.string.exception_dialog_message_no_browser));
-
-                    dialog.show(getFragmentManager(), ExceptionDialog.TAG);
-                }
-                break;
+            try {
+                final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(mExampleUrl));
+                startActivity(intent);
+            } catch (ActivityNotFoundException ignored) {
+            }
         }
     }
 

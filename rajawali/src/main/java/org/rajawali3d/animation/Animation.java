@@ -14,8 +14,8 @@ public abstract class Animation extends Playable {
 		, INFINITE
 		, RESTART
 		, REVERSE
-		, REVERSE_INFINITE;
-		// @formatter:on
+		, REVERSE_INFINITE
+        // @formatter:on
 	}
 
 	protected final List<IAnimationListener> mAnimationListeners;
@@ -225,6 +225,7 @@ public abstract class Animation extends Playable {
 
 		// Update the elapsed time
 		mElapsedTime += deltaTime;
+                if(mElapsedTime > mDuration) mElapsedTime = mDuration;
 
 		// Calculate the interpolated time
 		final double interpolatedTime = mInterpolator
@@ -353,5 +354,27 @@ public abstract class Animation extends Playable {
 
     public double getInterpolatedTime() {
         return mInterpolatedTime;
+    }
+
+    public void toggleDirection() {
+        mIsReversing = !mIsReversing;
+        mElapsedTime = (mDuration - mElapsedTime);
+    }
+
+    public void play(Direction direction) {
+        switch(direction) {
+        case reverse:
+            mIsReversing = true;
+            break;
+        default:
+            mIsReversing = false;
+            break;
+        }
+        play();
+    }
+
+    public enum Direction {
+        forwards,
+        reverse
     }
 }

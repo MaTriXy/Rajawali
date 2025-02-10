@@ -2,16 +2,16 @@ package org.rajawali3d.examples.examples;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 
 import org.rajawali3d.examples.R;
 
 public class ExceptionDialog extends DialogFragment {
 
-    public static final String BUNDLE_KEY_TITLE = "ExceptionDialog.BUNDLE_KEY_TITLE";
-    public static final String BUNDLE_KEY_MESSAGE = "ExceptionDialog.BUNDLE_KEY_MESSAGE";
+    private static final String BUNDLE_KEY_TITLE = "ExceptionDialog.BUNDLE_KEY_TITLE";
+    private static final String BUNDLE_KEY_MESSAGE = "ExceptionDialog.BUNDLE_KEY_MESSAGE";
     public static final String TAG = "ExceptionDialog.TAG";
 
     public static ExceptionDialog newInstance(@NonNull String title, @NonNull String message) {
@@ -27,7 +27,7 @@ public class ExceptionDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         builder.setTitle(R.string.exception_dialog_title);
         builder.setMessage(R.string.exception_dialog_message_unknown);
 

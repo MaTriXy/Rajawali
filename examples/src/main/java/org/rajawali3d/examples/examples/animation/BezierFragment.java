@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.examples.animation;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.Object3D;
 import org.rajawali3d.animation.Animation;
 import org.rajawali3d.animation.Animation3D;
@@ -26,7 +26,7 @@ public class BezierFragment extends AExampleFragment {
 	private final class BezierRenderer extends AExampleRenderer {
 		private DirectionalLight mLight;
 
-		public BezierRenderer(Context context, @Nullable AExampleFragment fragment) {
+		BezierRenderer(Context context, @Nullable AExampleFragment fragment) {
 			super(context, fragment);
 		}
 

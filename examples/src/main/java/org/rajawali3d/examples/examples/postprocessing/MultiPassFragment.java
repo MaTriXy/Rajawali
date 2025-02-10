@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.examples.postprocessing;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.animation.Animation;
 import org.rajawali3d.animation.RotateOnAxisAnimation;
 import org.rajawali3d.examples.examples.AExampleFragment;
@@ -110,12 +110,12 @@ public class MultiPassFragment extends AExampleFragment {
 		}
 
         @Override
-        public void onRender(final long ellapsedTime, final double deltaTime) {
+        public void onRender(final long elapsedTime, final double deltaTime) {
 			//
 			// -- Important. Call render() on the post processing manager.
 			//
 
-			mEffects.render(ellapsedTime, deltaTime);
+			mEffects.render(elapsedTime, deltaTime);
 		}
 	}
 }

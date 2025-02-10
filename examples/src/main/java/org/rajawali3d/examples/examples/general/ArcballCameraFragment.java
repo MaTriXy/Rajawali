@@ -2,7 +2,7 @@ package org.rajawali3d.examples.examples.general;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.Object3D;
 import org.rajawali3d.cameras.ArcballCamera;
 import org.rajawali3d.debug.DebugVisualizer;
@@ -24,7 +24,8 @@ public class ArcballCameraFragment extends AExampleFragment {
     }
 
     private final class ArcballCameraRenderer extends AExampleRenderer {
-        public ArcballCameraRenderer(Context context, @Nullable AExampleFragment fragment) {
+
+        ArcballCameraRenderer(Context context, @Nullable AExampleFragment fragment) {
             super(context, fragment);
         }
 
@@ -70,10 +71,10 @@ public class ArcballCameraFragment extends AExampleFragment {
                 monkey2.setPosition(-3, 3, 3);
                 getCurrentScene().addChild(monkey2);
 
-                ArcballCamera arcball = new ArcballCamera(mContext, ((Activity)mContext).findViewById(R.id.content_frame));
+                ArcballCamera arcball = new ArcballCamera(mContext, ((Activity) mContext).findViewById(R.id.content_frame));
                 arcball.setPosition(4, 4, 4);
                 getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), arcball);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

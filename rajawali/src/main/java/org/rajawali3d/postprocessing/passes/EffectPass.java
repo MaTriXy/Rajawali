@@ -12,10 +12,10 @@
  */
 package org.rajawali3d.postprocessing.passes;
 
-import android.support.annotation.FloatRange;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.RawRes;
+import androidx.annotation.FloatRange;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.RawRes;
 import org.rajawali3d.materials.Material;
 import org.rajawali3d.materials.shaders.FragmentShader;
 import org.rajawali3d.materials.shaders.VertexShader;
@@ -71,16 +71,16 @@ public class EffectPass extends APass {
 
     public void render(@NonNull Scene scene, @NonNull Renderer renderer, @NonNull ScreenQuad screenQuad,
                        @NonNull RenderTarget writeTarget, @NonNull RenderTarget readTarget,
-                       @IntRange(from = 0) long ellapsedTime, @FloatRange(from = 0d) double deltaTime) {
+                       @IntRange(from = 0) long elapsedTime, @FloatRange(from = 0d) double deltaTime) {
         mReadTarget = readTarget;
         mWriteTarget = writeTarget;
         screenQuad.setMaterial(mMaterial);
         screenQuad.setEffectPass(this);
 
         if (mRenderToScreen) {
-            scene.render(ellapsedTime, deltaTime, null);
+            scene.render(elapsedTime, deltaTime, null);
         } else {
-            scene.render(ellapsedTime, deltaTime, writeTarget);
+            scene.render(elapsedTime, deltaTime, writeTarget);
         }
     }
 

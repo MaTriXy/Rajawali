@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.data;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 public class Category implements INamed {
 
@@ -9,8 +9,7 @@ public class Category implements INamed {
     private final int name;
     private final Example[] examples;
 
-    public Category(@StringRes int name,
-             @NonNull Example[] examples) {
+    public Category(@StringRes int name, @NonNull Example[] examples) {
         this.name = name;
         this.examples = examples;
     }

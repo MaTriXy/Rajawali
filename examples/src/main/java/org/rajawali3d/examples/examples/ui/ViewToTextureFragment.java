@@ -5,8 +5,10 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.View;
@@ -31,11 +33,11 @@ public class ViewToTextureFragment extends AExampleFragment {
     Handler mHandler;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         mHandler = new Handler(Looper.getMainLooper());
 
-        final FrameLayout fragmentFrame = new FrameLayout(getActivity());
+        final FrameLayout fragmentFrame = new FrameLayout(requireActivity());
         final FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(1024, 1024);
         fragmentFrame.setLayoutParams(params);
         fragmentFrame.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_bright));
@@ -44,7 +46,7 @@ public class ViewToTextureFragment extends AExampleFragment {
         mLayout.addView(fragmentFrame);
 
         mFragmentToDraw = new FragmentToDraw();
-        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.view_to_texture_frame, mFragmentToDraw, "custom").commit();
+        requireActivity().getSupportFragmentManager().beginTransaction().add(R.id.view_to_texture_frame, mFragmentToDraw, "custom").commit();
         return mLayout;
     }
 
@@ -68,7 +70,7 @@ public class ViewToTextureFragment extends AExampleFragment {
 
         private Object3D mObject3D;
 
-        public ViewTextureRenderer(Context context, @Nullable AExampleFragment fragment) {
+        ViewTextureRenderer(Context context, @Nullable AExampleFragment fragment) {
             super(context, fragment);
         }
 
@@ -114,7 +116,7 @@ public class ViewToTextureFragment extends AExampleFragment {
         };
 
         @Override
-        protected void onRender(long ellapsedRealtime, double deltaTime) {
+        protected void onRender(long elapsedRealtime, double deltaTime) {
             // -- not a really accurate way of doing things but you get the point :)
             if (mSurface != null && mFrameCount++ >= (mFrameRate * 0.25)) {
                 mFrameCount = 0;
@@ -125,7 +127,7 @@ public class ViewToTextureFragment extends AExampleFragment {
                 mStreamingTexture.update();
                 mShouldUpdateTexture = false;
             }
-            super.onRender(ellapsedRealtime, deltaTime);
+            super.onRender(elapsedRealtime, deltaTime);
         }
 
         @Override
@@ -142,7 +144,7 @@ public class ViewToTextureFragment extends AExampleFragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             final View view = inflater.inflate(R.layout.view_to_texture, container, false);
-            mWebView = (WebView) view.findViewById(R.id.webview);
+            mWebView = view.findViewById(R.id.webview);
             mWebView.setWebViewClient(new WebViewClient());
             // Load the Rajawali Repo commit activity graph
             //webView.loadUrl("https://github.com/Rajawali/Rajawali/graphs/commit-activity");

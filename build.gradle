@@ -1,23 +1,51 @@
-apply from: 'versions.gradle'
-apply from: 'deps.gradle'
-if (file('local.gradle').exists()) {
-    apply from: 'local.gradle'
-}
-
 buildscript {
+    ext.dokka_version = '0.9.18'
+    ext.kotlin_version = '1.4.21-2'
     repositories {
+        google()
         jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath "jp.classmethod.aws:gradle-aws-plugin:0.31"
+        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
+        classpath 'digital.wup:android-maven-publish:3.6.3'
+        classpath "org.jacoco:org.jacoco.core:0.8.6"
     }
 }
 
-allprojects {
+plugins {
+    // ./gradlew dependencyUpdates
+    id 'com.github.ben-manes.versions' version '0.36.0'
+}
+
+ext {
+    minSdk = 15
+    targetSdk = 30
+    compileSdk = 30
+    wear = "2.8.1"
+    wearService = "17.0.0"
+
+    extJUnitVersion = "1.1.2"
+    espresso_core = "3.3.0"
+
+    isCi = System.env.CI == "true"
+    maxDexHeap = "2g"
+}
+
+def bundleVersion = getVersion()
+println("Building project $bundleVersion")
+
+subprojects {
+    group 'org.rajawali3d'
+    version = bundleVersion
+
     repositories {
-        mavenLocal()
+        google()
+        mavenCentral()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -25,23 +53,40 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-def isReleaseBuild() {
-    return isTag() && !isSnapshot()
+static def getVersion() {
+    final majorMinorVersion = "1.3"
+    final isCI = !"$System.env.CI".isEmpty()
+    final isMaster = "$System.env.CIRCLE_BRANCH" == "master"
+    final isDevelop = "$System.env.CIRCLE_BRANCH" == "develop"
+    def tagVersion = "$System.env.VERSION"
+
+    if (tagVersion == "null") {
+        final commitCount = getGitCommitCount()
+
+        // If CI and master branch -> release build, no modifier
+        // If CI and develop branch -> snapshot build
+        // Any other case is a DIRTY build and should not be published. Publish script disables
+        //   remote publication for versions marked DIRTY
+        if (isCI && isMaster) {
+            tagVersion = "$majorMinorVersion.$commitCount"
+        } else if (isCI && isDevelop) {
+            tagVersion = "$majorMinorVersion.$commitCount-SNAPSHOT"
+        } else {
+            tagVersion = "$majorMinorVersion.$commitCount-DIRTY"
+        }
+    } else {
+        def tagVersionToken = tagVersion.split("/")
+        if (tagVersionToken.size() > 2) {
+            tagVersion = tagVersionToken[2]
+        } else {
+            tagVersion = tagVersionToken[0]
+        }
+    }
+    return tagVersion
 }
 
-def isSnapshot() {
-    return version.contains("SNAPSHOT")
-}
-
-boolean isTravis() {
-    return System.getenv('TRAVIS_BUILD_NUMBER') ? true : false
-}
-
-boolean isTag() {
-    def tag = System.getenv('TRAVIS_TAG')
-    return !(tag == null || tag.isEmpty())
-}
-
-def buildNumber() {
-    return System.getenv('TRAVIS_BUILD_NUMBER') ?: "0"
+@SuppressWarnings('unused')
+static def getGitCommitCount() {
+    def process = "git rev-list HEAD --count".execute()
+    return process.text.toInteger()
 }

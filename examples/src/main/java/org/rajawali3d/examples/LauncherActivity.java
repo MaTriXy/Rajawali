@@ -7,8 +7,8 @@ import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,9 +20,8 @@ public class LauncherActivity extends AppCompatActivity {
     private static final String TAG = "LauncherActivity";
 
     private static final int REQUEST_PERMISSIONS = 1;
-    private static String[] PERMISSIONS = {
+    public static String[] PERMISSIONS = {
             permission.CAMERA,
-            permission.READ_PHONE_STATE,
             permission.INTERNET,
             permission.ACCESS_NETWORK_STATE,
             permission.ACCESS_WIFI_STATE,

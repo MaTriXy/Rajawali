@@ -14,7 +14,6 @@ package org.rajawali3d;
 
 import android.graphics.Color;
 import android.opengl.GLES20;
-import org.rajawali3d.animation.mesh.VertexAnimationObject3D;
 import org.rajawali3d.bounds.BoundingBox;
 import org.rajawali3d.bounds.BoundingSphere;
 import org.rajawali3d.math.vector.Vector3;
@@ -321,7 +320,7 @@ public class Geometry3D {
         newNormals = concatAllFloat(mNormalsArray, addNormals);
         newColors = concatAllFloat(mColorsArray, addColors);
         newTextureCoords = concatAllFloat(mTextureCoordsArray, addTextureCoords);
-        newIntIndices = concatAllInt(mIndicesArray, (int[]) addIndices);
+        newIntIndices = concatAllInt(mIndicesArray, addIndices);
 
         //Set the new data
         setVertices(newVertices, true);

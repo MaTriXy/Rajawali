@@ -1,27 +1,20 @@
-![Rajawali](http://www.rozengain.com/files/rajawali-logo.jpg)
-
-## About
 [![AndroidLibs](https://img.shields.io/badge/AndroidLibs-Rajawali-brightgreen.svg?style=flat)](https://www.android-libs.com/lib/rajawali?utm_source=github-badge&utm_medium=github-badge&utm_campaign=github-badge)
 [![License](https://img.shields.io/badge/license-Apache%202.0%20License-blue.svg)](https://github.com/Rajawali/Rajawali/blob/master/LICENSE.txt)
-[![Maven Central](https://img.shields.io/maven-central/v/org.rajawali3d/rajawali.svg)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22rajawali%22)
-[![Trending](http://starveller.sigsev.io/api/repos/Rajawali/Rajawali/badge)](http://starveller.sigsev.io/Rajawali/Rajawali)
+[![Maven Central](https://img.shields.io/maven-metadata/v/https/oss.sonatype.org/content/repositories/releases/org/rajawali3d/rajawali/maven-metadata.xml.svg)](https://oss.sonatype.org/content/repositories/releases/org/rajawali3d)
+[![Maven Central](https://img.shields.io/maven-metadata/v/https/oss.sonatype.org/content/repositories/snapshots/org/rajawali3d/rajawali/maven-metadata.xml.svg)](https://oss.sonatype.org/content/repositories/snapshots/org/rajawali3d)
 
 ### Build Status
 **Master Branch Status**  
-[![master](https://travis-ci.org/Rajawali/Rajawali.svg?branch=master)](https://travis-ci.org/Rajawali/Rajawali)
+[![CircleCI](https://circleci.com/gh/Rajawali/Rajawali/tree/master.svg?style=svg)](https://circleci.com/gh/Rajawali/Rajawali/)
 [![codecov](https://codecov.io/gh/Rajawali/Rajawali/branch/master/graph/badge.svg)](https://codecov.io/gh/Rajawali/Rajawali)
-
-**Development Branch Status**  
-[![development](https://travis-ci.org/Rajawali/Rajawali.svg?branch=v2.0-development)](https://travis-ci.org/Rajawali/Rajawali)
-[![codecov](https://codecov.io/gh/Rajawali/Rajawali/branch/v2.0-development/graph/badge.svg)](https://codecov.io/gh/Rajawali/Rajawali)
 
 ### News
 
+**06/23/2017**
+`Bombshell 1.1.970` has been released. It fixes behavior of Objects of zero size, TextureView, TextureManager, Toon Shader color setters, custom shaders and more... It also adds preprocessor directive support for shader plugins, configurable skybox geometry, and extends our Unit Text Framework.
+
 **11/16/2016**
 `Bombshell 1.1.777` has been released. It fixes a small number of bugs and adds a Scan Line post processing effect (thanks @contriteobserver). 
-
-**11/15/2016**
-One of the developers (@jwoolston) is now offering consulting/development services, particularly related to Rajawali. Details will be handled on a case by case basis but everything from paid assistance debugging to development of specific modifications or full apps using Rajawali are possible. To be clear, support on the Issues page is always free, however it is handled on a lower priority basis. Any development which happens under a paid contract is subject to whatever copyright terms the client specifies to the extent they are compatible with the licensing terms of Rajawali (see [LICENSE.txt](./LICENSE.txt))
 
 **9/7/2016**
 The official release of `Bombshell 1.1.610` is out. We will continue to support this release moving forward how ever bug fixes will be minimal. The decision was made that the design of the core engine was inhibiting correcting some of the larger issues. To this end, we have begun development of a `2.0` version - see issue [1755](https://github.com/Rajawali/Rajawali/issues/1755) for details. Development is happening in the `v2.0-development` branch [here](https://github.com/Rajawali/Rajawali/tree/v2.0-development)
@@ -47,13 +40,13 @@ Numerous apps and live wallpapers have been made with Rajawali. [Check them out!
 
 Using Rajawali is as simple as adding a single line to your gradle dependencies:
 
-`compile 'org.rajawali3d:rajawali:x.x.x@aar` where x.x.x is the version number (and the last number is the build number). If you wish to use the `master` branch snapshot, append `-SNAPSHOT`. For example, to use release `1.0.325`, you would use:
+`implementation 'org.rajawali3d:rajawali:x.x.x@aar` where x.x.x is the version number (and the last number is the build number). If you wish to use the `master` branch snapshot, append `-SNAPSHOT`. For example, to use release `1.0.325`, you would use:
 
-`compile 'org.rajawali3d:rajawali:1.0.325@aar`
+`implementation 'org.rajawali3d:rajawali:1.0.325@aar`
 
 To use the `master` branch build 48 snapshot `1.0.48-SNAPSHOT`, you would use:
 
-`compile 'org.rajawali3d:rajawali:1.0.48-SNAPSHOT@aar`
+`implementation 'org.rajawali3d:rajawali:1.0.48-SNAPSHOT@aar`
 
 All commits to `master` and `development` branch are deployed as snapshots. All tags will be deployed as releases. To see the latest build number, see the [build history](https://travis-ci.org/Rajawali/Rajawali/builds) and be sure you choose a `master` branch build.
 
@@ -61,7 +54,7 @@ For the above to work you will need to make sure your repository list includes:
 
 `mavenCentral()` for releases, and `maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }` for snapshots.
 
-Alternatively, if you checkout Rajawali via GIT, you can run `gradle assembleRelease uploadArchives` (or simply add a Gralde launch config to Android Studio for the `assembleRelease` and `uploadArchives` tasks). This will deploy to your local maven ropository. Consuming apps should have `mavenLocal()` in their repository list and add `compile 'org.rajawali3d:rajawali:1.0.0-SNAPSHOT@aar` to their dependencies.
+Alternatively, if you checkout Rajawali via GIT, you can run `gradle assembleRelease uploadArchives` (or simply add a Gralde launch config to Android Studio for the `assembleRelease` and `uploadArchives` tasks). This will deploy to your local maven repository. Consuming apps should have `mavenLocal()` in their repository list and add `implementation 'org.rajawali3d:rajawali:1.0.0-SNAPSHOT@aar` to their dependencies.
 
 ## Rajawali Examples On The Market
 

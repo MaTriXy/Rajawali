@@ -1,8 +1,6 @@
 package org.rajawali3d.examples.data;
 
-import android.support.annotation.NonNull;
-
-import com.rajawali3d.examples.data.DataSetImpl;
+import androidx.annotation.NonNull;
 
 import org.rajawali3d.examples.R;
 import org.rajawali3d.examples.examples.animation.AnimationFragment;
@@ -31,8 +29,10 @@ import org.rajawali3d.examples.examples.general.TerrainFragment;
 import org.rajawali3d.examples.examples.general.ThreeSixtyImagesFragment;
 import org.rajawali3d.examples.examples.general.UniformDistributionFragment;
 import org.rajawali3d.examples.examples.general.UsingGeometryDataFragment;
+import org.rajawali3d.examples.examples.interactive.AccelerometerFragment;
 import org.rajawali3d.examples.examples.interactive.FirstPersonCameraFragment;
 import org.rajawali3d.examples.examples.interactive.ObjectPickingFragment;
+import org.rajawali3d.examples.examples.interactive.ObjectRotateFragment;
 import org.rajawali3d.examples.examples.interactive.TouchAndDragFragment;
 import org.rajawali3d.examples.examples.lights.DirectionalLightFragment;
 import org.rajawali3d.examples.examples.lights.MultipleLightsFragment;
@@ -86,9 +86,8 @@ public final class DataSet {
 
     private final List<Category> categories;
 
-    DataSet() {
+    private DataSet() {
         categories = createCategories();
-        categories.addAll(DataSetImpl.getInstance().getCategories());
     }
 
     public static synchronized DataSet getInstance() {
@@ -104,7 +103,7 @@ public final class DataSet {
     }
 
     @NonNull
-    static List<Category> createCategories() {
+    private static List<Category> createCategories() {
         List<Category> categories = new LinkedList<>();
         categories.add(new Category(R.string.category_general, new Example[]{
                 new Example(R.string.example_general_getting_started, BasicFragment.class),
@@ -132,8 +131,10 @@ public final class DataSet {
                 new Example(R.string.example_lights_multiple_light, MultipleLightsFragment.class),
         }));
         categories.add(new Category(R.string.category_interactive, new Example[]{
-                new Example(R.string.example_interactive_using_accelerometer, UsingGeometryDataFragment.class),
+                new Example(R.string.example_interactive_using_accelerometer, AccelerometerFragment.class),
+                new Example(R.string.example_general_using_geometry_data, UsingGeometryDataFragment.class),
                 new Example(R.string.example_interactive_object_picking, ObjectPickingFragment.class),
+                new Example(R.string.example_interactive_object_rotate, ObjectRotateFragment.class),
                 new Example(R.string.example_interactive_touch_drag, TouchAndDragFragment.class),
                 new Example(R.string.example_interactive_first_person_camera, FirstPersonCameraFragment.class),
         }));

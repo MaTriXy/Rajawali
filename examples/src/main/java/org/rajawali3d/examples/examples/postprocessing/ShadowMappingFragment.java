@@ -2,7 +2,7 @@ package org.rajawali3d.examples.examples.postprocessing;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.examples.examples.AExampleFragment;
 import org.rajawali3d.lights.DirectionalLight;
 import org.rajawali3d.materials.Material;
@@ -83,8 +83,8 @@ public class ShadowMappingFragment extends AExampleFragment {
 		}
 
         @Override
-        public void onRender(final long ellapsedTime, final double deltaTime) {
-			mPostProcessingManager.render(ellapsedTime, deltaTime);
+        public void onRender(final long elapsedTime, final double deltaTime) {
+			mPostProcessingManager.render(elapsedTime, deltaTime);
 		}
 	}
 }

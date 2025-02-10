@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.examples.animation;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.Object3D;
 import org.rajawali3d.animation.Animation;
 import org.rajawali3d.animation.EllipticalOrbitAnimation3D;
@@ -29,7 +29,7 @@ public class CatmullRomFragment extends AExampleFragment {
 
 	private final class CatmullRomRenderer extends AExampleRenderer {
 
-		public CatmullRomRenderer(Context context, @Nullable AExampleFragment fragment) {
+		CatmullRomRenderer(Context context, @Nullable AExampleFragment fragment) {
 			super(context, fragment);
 		}
 
@@ -96,7 +96,7 @@ public class CatmullRomFragment extends AExampleFragment {
 			}
 
 			// -- visualize the line
-			Stack<Vector3> linePoints = new Stack<Vector3>();
+			Stack<Vector3> linePoints = new Stack<>();
 			for (int i = 0; i < 100; i++) {
 				Vector3 point = new Vector3();
 				path.calculatePoint(point, i / 100f);

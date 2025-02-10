@@ -216,12 +216,12 @@ public final class LensFlarePlugin extends Plugin {
 
 	@Override
 	protected void init(boolean createVBOs) {
-		mLensFlares = new Stack<LensFlare>();
+		mLensFlares = new Stack<>();
 		int[] maxVertexTextureImageUnits = new int[1];
 		GLES20.glGetIntegerv(GLES20.GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS, maxVertexTextureImageUnits, 0);
 		mVertexTextureSupported = maxVertexTextureImageUnits[0] != 0;
 
-		int i = 0, j = 0;
+		int i = 0, j;
         int numVertices = 8;
         float[] vertices = new float[numVertices];
         float[] textureCoords = new float[numVertices];
@@ -270,8 +270,8 @@ public final class LensFlarePlugin extends Plugin {
         // Set up lookup textures.
         mMapTexture = new TextureConfig(TextureType.LOOKUP);
         mMapTexture.setBuffers(new ByteBuffer[0]);
-        mMapTexture = mRenderer.getTextureManager().addTexture(new ByteBuffer[0], null, 16, 16, TextureType.LOOKUP, Config.RGB_565, false, false, WrapType.CLAMP, FilterType.NEAREST);
-        mOcclusionMapTexture = mRenderer.getTextureManager().addTexture(new ByteBuffer[0], null, 16, 16, TextureType.LOOKUP, Config.ARGB_8888, false, false, WrapType.CLAMP, FilterType.NEAREST);
+        mMapTexture = renderer.getTextureManager().addTexture(new ByteBuffer[0], null, 16, 16, TextureType.LOOKUP, Config.RGB_565, false, false, WrapType.CLAMP, FilterType.NEAREST);
+        mOcclusionMapTexture = renderer.getTextureManager().addTexture(new ByteBuffer[0], null, 16, 16, TextureType.LOOKUP, Config.ARGB_8888, false, false, WrapType.CLAMP, FilterType.NEAREST);
         */
         // Set up shader program.
         // Currently vertex texture shader causes problems on Adreno 320 GPUs.

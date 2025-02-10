@@ -55,7 +55,7 @@ public class LoaderGCode extends AMeshLoader {
 
 		private int val;
 
-		private GCodeFlavor(int val) {
+		GCodeFlavor(int val) {
 			this.val = val;
 		}
 
@@ -97,7 +97,7 @@ public class LoaderGCode extends AMeshLoader {
 
 		private int val;
 
-		private SupportedCommands(int val) {
+		SupportedCommands(int val) {
 			this.val = val;
 		}
 
@@ -165,8 +165,8 @@ public class LoaderGCode extends AMeshLoader {
 	 */
 	public static class GCodeLine {
 
-		public static final float DEFAULT_THICKNESS = 1.0f;
-		public static final int DEFAULT_COLOR = 0x9c9c9c;
+		static final float DEFAULT_THICKNESS = 1.0f;
+		static final int DEFAULT_COLOR = 0x9c9c9c;
 
 		private boolean invalidateLine;
 		private float thickness;
@@ -607,9 +607,8 @@ public class LoaderGCode extends AMeshLoader {
 	/**
 	 * @param buffer
 	 * @return
-	 * @throws IOException
-	 */
-	protected HashMap<String, String> readSkeinforgeComments(BufferedInputStream buffer) throws IOException {
+     */
+	protected HashMap<String, String> readSkeinforgeComments(BufferedInputStream buffer) {
 		// FIXME no-op
 		return new HashMap<String, String>();
 	}

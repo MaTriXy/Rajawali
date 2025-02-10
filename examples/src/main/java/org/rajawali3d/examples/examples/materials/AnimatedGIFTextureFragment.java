@@ -1,7 +1,7 @@
 package org.rajawali3d.examples.examples.materials;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import org.rajawali3d.animation.Animation;
 import org.rajawali3d.animation.EllipticalOrbitAnimation3D;
 import org.rajawali3d.examples.R;
@@ -55,8 +55,8 @@ public class AnimatedGIFTextureFragment extends AExampleFragment {
 		}
 
         @Override
-        protected void onRender(long ellapsedRealtime, double deltaTime) {
-            super.onRender(ellapsedRealtime, deltaTime);
+        protected void onRender(long elapsedRealtime, double deltaTime) {
+            super.onRender(elapsedRealtime, deltaTime);
 			if (mGifTexture != null) {
 				try {
 					mGifTexture.update();
